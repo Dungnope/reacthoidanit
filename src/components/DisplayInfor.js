@@ -14,6 +14,7 @@ class DisplayInfor extends React.Component{
        })
     }
 
+    //template + logic js
     render(){
        //destructuring array/object
        const {listUser} = this.props;

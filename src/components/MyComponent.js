@@ -22,8 +22,11 @@ class MyComponent extends React.Component {
     }
     //JSX
     render(){
+        //DRY: don't repeat yourself
+        const test = true;
         return (
             <>
+                {test}
                 <div className="a">
                     <AddUserInfor handleAddNewUser = {this.handleAddNewUser} />
                     <br/> <br/>

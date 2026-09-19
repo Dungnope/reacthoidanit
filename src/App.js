@@ -9,7 +9,6 @@ class App extends React.Component {
   render(){
     return (
       <div className='app-container'>
-        Hello guys
         <MyComponent></MyComponent>
       </div>
     );
