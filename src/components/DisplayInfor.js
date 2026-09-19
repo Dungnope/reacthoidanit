@@ -1,13 +1,30 @@
 import React from "react";
 import './DisplayInfor.scss';
-import logo from '../logo.svg';
 class DisplayInfor extends React.Component{
     //cach code dung OOP
     //khong can dung do da co babel compiler
     constructor(props){
         super(props);
+        console.log(">> this run first 1")
         this.state = {
             isShowListUser: true
+        }
+    }
+
+    componentDidMount(){ //thuong dung goi api sau nay
+        console.log(">>> call me componenent did mount last session in first run");
+        setTimeout(() => {
+            document.title = "React by Nope"
+        }, 3000);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        console.log(">>> call me when something update", this.props, prevProps);
+        //check item difference
+        if(this.props.listUser !== prevProps.listUser){
+            if(this.props.listUser.length === 5){
+                alert("full list");
+            }
         }
     }
 
@@ -19,6 +36,7 @@ class DisplayInfor extends React.Component{
 
     //template + logic js
     render(){
+        console.log(">> call me render any time have change");
        //destructuring array/object
        const {listUser} = this.props;
        // console.log(listUser);
