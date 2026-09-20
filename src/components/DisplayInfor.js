@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './DisplayInfor.scss';
 
 //stateless vs stateful: khi chua co hook
@@ -38,15 +38,29 @@ import './DisplayInfor.scss';
 //     }
 // }
 
+//stateless component
 const DisplayInfor = (props) => { //function component props tu dong truyen vao
     console.log(">> call me render any time have change");
-    //destructuring array/object
-    const {listUser} = props;
-    // console.log(listUser);
+    const {listUser} = props; 
+
+    const [isShowHideListUser, setShowHideListUser] = useState(true);
+    // [ten bien state, ham giup cap nhat bien state]
+    //destructuring assigment
+    // giong voi this.state = {isShowHideListUser: true}
+
+    const handleShowHideListUser = () => {
+        setShowHideListUser(!isShowHideListUser); 
+        // tuong duong voi this.setState({isShowHideListUser: !isShowHideListUser})
+    }
     //props -> viet tat properties
     return (
         <div className="display-infor-container">
-            {true &&
+            <div>
+                <span onClick={() => handleShowHideListUser()}>
+                    {isShowHideListUser === true ? "Hide" : "Show"} List user
+                </span>
+            </div>
+            {isShowHideListUser &&
                 <div>
                     {listUser.map((user) => {
                         return(
