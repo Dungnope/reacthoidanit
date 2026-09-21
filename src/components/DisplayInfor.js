@@ -25,6 +25,7 @@ const DisplayInfor = (props) => { //function component props tu dong truyen vao
         console.log(">> call me useEffect");
     }, [listUser]); // ngoac vuong thi chi chay 1 lan, bien muon react theo doi chinh la check xem componentDidUpdate
     //useEffect dung bao nhieu tuy y
+    //ngoai ra con rat nhieu hooks
 
     //props -> viet tat properties
     return (
