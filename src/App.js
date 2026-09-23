@@ -13,7 +13,7 @@ const App = () => {
 
         </div>
         <div className='app-content'>
-          <Outlet></Outlet>
+          <Outlet />
         </div>
       </div>
 
