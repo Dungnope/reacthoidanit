@@ -8,11 +8,41 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 1200px){
+  .container, .container-lg, .container-md, .container-sm, .container-xl{
+    max-width: 95% !important;
+  }
+}
+
 .app-container{
   .header-container{
+
+    .btn-login{
+      border-radius: 4px;
+      margin-right: 16px;
+      padding: 0 16px;
+      border: 1px solid #535353;
+      background-color: transparent;
+      height: 40px;
+    }
+
+    .btn-signup{
+      border-radius: 4px;
+      margin-right: 16px;
+      padding: 0 16px;
+      color: #fff;
+      border: none;
+      background-color: #303030;
+      height: 40px;
+
+      &:hover{
+        background-color: #000;
+      }
+    }
+
     .navbar {
-      z-index: 1;
-      opacity: 0.6;
+      padding-top: 20px;
+      background-color: rgba(225, 225, 225, 0) !important;
       .nav-link {
         &.active{ // nav-link and active like .nav-link.active
           color: aqua;
@@ -20,10 +50,38 @@ body {
       }
     }
   }
+
+  .homepage-container{
+    .homepage-content{
+      padding: 100px;
+      position: relative;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      
+      .heading_text{
+        font-size: 80px;
+        font-weight: 600px;
+      }
+
+      .description_text{
+        font-size: 25px;
+      }
+
+      button{
+        width: fit-content;
+        padding: 0 16px;
+        border: 1px solid #535353;
+        height: 40px;
+      }
+    }
+  }
 }
 
 video{
-  width: 100vw;
-  top: 0;
+  z-index: -1;
   position: fixed;
+  bottom: 0;
+  width: 100vw;
 }
