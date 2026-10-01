@@ -1,6 +1,6 @@
 import 'react-pro-sidebar/dist/css/styles.css';
 import './SideBar.scss';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import {FaGem} from 'react-icons/fa';
 import {
   ProSidebar,
   Menu,
@@ -13,6 +13,7 @@ import {
 import sidebarBg from '../../assets/bg2.jpg';
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
+import {Link} from 'react-router-dom';
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -51,6 +52,7 @@ const SideBar = (props) => {
            // suffix={<span className='badge red'>Main</span>} //for show tag on right or menuitem
           >
             Dashboard
+            <Link to="/admin"/>
           </MenuItem>
         </Menu>
         <Menu iconShape="circle">
@@ -59,6 +61,7 @@ const SideBar = (props) => {
             title="Features"
           >
             <MenuItem>Quản lý Users</MenuItem>
+            <Link to="/admin/manage-users"/>
             <MenuItem>Quản lý Bài Quiz</MenuItem>
             <MenuItem>Quản lý Câu Hỏi</MenuItem>
           </SubMenu>
