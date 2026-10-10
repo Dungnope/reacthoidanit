@@ -4,6 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import './ManageUser.scss'
 import { FcPlus } from "react-icons/fc";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 const ModalCreateUser = (props) =>  {
   const {show, setShow} = props;
@@ -34,26 +36,53 @@ const ModalCreateUser = (props) =>  {
 
   }
 
-  const handleSubmitCreateUser = async() => {
-    //validate info before allow save user
-    // let data = {
-    //   email: email,
-    //   password: password,
-    //   username: username,
-    //   role: role,
-    //   userImage: image
-    // }
-    
-  const data = new FormData();
-    data.append('email', email);
-    data.append('password', password);
-    data.append('username', username);
-    data.append('role', role);
-    data.append('userImage', image);
+  // Source - https://stackoverflow.com/a/46181
+  // Posted by John Rutherford, modified by community. See post 'Timeline' for change history
+  // Retrieved 2026-10-10, License - CC BY-SA 4.0
 
-    let res = await axios.post('http://localhost:8081/api/v1/participant', data);
-    console.log(">>>check res", res);
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
+  const handleSubmitCreateUser = async() => {
+
+    const isValidEmail = validateEmail(email);
+    if(!isValidEmail){
+      toast.error("Invalid email");
+      return;
+    }
+
+    if(!password){
+      toast.error("Invalid password");
+      return;
+    }
+      
+    const data = new FormData();
+    //submit data
+      data.append('email', email);
+      data.append('password', password);
+      data.append('username', username);
+      data.append('role', role);
+      data.append('userImage', image);
+
+      let res = await axios.post('http://localhost:8081/api/v1/participant', data);
+      console.log(res.data);
+
+      if(res.data && !res.data.EC){
+        toast.success(res.data.EM);
+        handleClose();
+      }
+
+      if(res.data && res.data.EC){
+        toast.error(res.data.EM);
+      }
   }
+
+  
 
   return (
     <>
